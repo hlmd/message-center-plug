@@ -17,6 +17,7 @@ use message\enum\Constant;
 class Base
 {
     protected $base_url = '';
+    protected $app_type = '';
     protected $key = '';
     protected $method = '';
     protected $data = [];
@@ -78,6 +79,7 @@ class Base
      * 发送消息
      * @return mixed
      * @throws GuzzleException
+     * @throws Exception
      */
     public function send()
     {
