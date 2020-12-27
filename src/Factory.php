@@ -11,11 +11,11 @@ use message\service\Base;
 /**
  * Class Factory
  * @package message
- * @method static \message\service\AliyunSms AliyunSms(string $base_url, string $key) 阿里云短信
- * @method static \message\service\WechatGzh WechatGzh(string $base_url, string $key) 微信公众号
- * @method static \message\service\WechatXcx WechatXcx(string $base_url, string $key) 微信小程序
- * @method static \message\service\GoeasyIm  GoeasyIm(string $base_url, string $key)  GoeasyIm
- * @method static \message\service\BatchSend BatchSend(string $base_url, string $key) 批量发送
+ * @method static \message\service\AliyunSms AliyunSms(string $base_url = '', string $key = '') 阿里云短信
+ * @method static \message\service\WechatGzh WechatGzh(string $base_url = '', string $key = '') 微信公众号
+ * @method static \message\service\WechatXcx WechatXcx(string $base_url = '', string $key = '') 微信小程序
+ * @method static \message\service\GoeasyIm  GoeasyIm(string $base_url = '', string $key = '')  GoeasyIm
+ * @method static \message\service\BatchSend BatchSend(string $base_url = '', string $key = '') 批量发送
  */
 class Factory
 {
