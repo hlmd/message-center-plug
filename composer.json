@@ -1,14 +1,13 @@
 {
     "name": "hlmd/message-plug",
     "description": "This is a message center request composer plug.",
-    "type": "composer-plugin",
     "authors": [
         {
             "name": "黄连木笛",
             "email": "leihuahui@outlook.com"
         }
     ],
-    "minimum-stability": "dev",
+    "minimum-stability": "stable",
     "license": "MIT",
     "require": {
         "php" : ">=7.2",
