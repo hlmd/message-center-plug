@@ -6,19 +6,20 @@ namespace message\service;
 
 use Exception;
 use GuzzleHttp\Client as HttpClient;
-use message\think\helper\Str;
-use message\think\Validate;
+use GuzzleHttp\Exception\GuzzleException;
+use message\unit\Str;
 use message\enum\Constant;
 
 /**
  * Class Base
- * @method sendSms(string $to, string $template_code, array $template_array, string $sign_name) 阿里云单发短信
  * @package message\service
  */
-class Base extends Validate
+class Base
 {
     protected $base_url = '';
     protected $key = '';
+    protected $method = '';
+    protected $data = [];
 
     /**
      * Base constructor.
@@ -29,38 +30,65 @@ class Base extends Validate
     {
         $this->base_url = $base_url;
         $this->key = $key;
-        parent::__construct();
     }
 
     /**
-     * 调用方法
+     * 调用方法生成示例
      * @param string $method
      * @param array $args
-     * @return mixed
+     * @return $this
      * @throws Exception
      */
-    public function __call(string $method, array $args)
+    public function __call(string $method, array $args): Base
     {
-        var_dump($this->base_url . '/' . Str::studly($this->app_type) . $method);
-        if (!$this->hasScene($method)) {
-            return parent::__call($method, $args);
+        if (!property_exists($this, $method)) {
+            throw new Exception($method . '()方法不存在');
         }
         $data = [];
-        foreach ($this->scene[$method] as $key => $value) {
-            if (!isset($args[$key])) {
-                throw new Exception('缺少参数: ' . $value . ',在' . $method . '(' . join(',', $this->scene[$method]) . ')');
+        $i = 0;
+        foreach ($this->$method as $key => $value) {
+            if (is_int($key) && !isset($args[$i])) {
+                throw new Exception('缺少参数: ' . $value);
+            } else if (is_string($key) && !isset($args[$i])) {
+                $data[$key] = $value;
+            } else {
+                $data[$value] = $args[$key];
             }
-            $data[$value] = $args[$key];
+            $i++;
         }
-        if ($this->check($data) === false) {
-            throw new Exception($this->getError());
+        $this->data = $data;
+        $this->method = $method;
+        return $this;
+    }
+
+    /**
+     * 生成批量发送数据
+     * @return array
+     */
+    public function batch(): array
+    {
+        return [
+            'service' => $this->app_type,
+            'action' => $this->method,
+            'data' => $this->data,
+        ];
+    }
+
+    /**
+     * 发送消息
+     * @return mixed
+     * @throws GuzzleException
+     */
+    public function send()
+    {
+        if (empty($this->method)) {
+            throw new Exception('请选择方法');
         }
         $http_client = new HttpClient();
-        $http_client->post($this->base_url . '/' . Str::studly($this->app_type) . $method, [
-            'query' => [
-                Constant::PLATFORM_KEY => $this->key
-            ],
-            'form_params' => $data
-        ]);
+        $response = $http_client->post($this->base_url . '/' . Str::studly($this->app_type) . '/' . $this->method, [
+            'query' => [Constant::PLATFORM_KEY => $this->key],
+            'form_params' => $this->data
+        ])->getBody()->getContents();
+        return json_decode($response, true);
     }
 }
