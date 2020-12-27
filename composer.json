@@ -11,7 +11,8 @@
     "minimum-stability": "dev",
     "require": {
         "php" : ">=7.2",
-        "ext-curl": "*"
+        "ext-curl": "*",
+        "guzzlehttp/guzzle": "^7.1@dev"
     },
     "autoload": {
         "psr-4": {

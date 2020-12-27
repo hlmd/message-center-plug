@@ -2,15 +2,11 @@
 require 'vendor/autoload.php';
 
 use message\Factory;
-use message\util\CurlUnit;
 
 class AliyunSms
 {
     public function sendSms(){
-
-        CurlUnit::get('http://api.message.hlmd.net/send/AliyunSms/sendSms?admin=10&badmin=1000')->setConnectTimeout(11);
-        var_dump(CurlUnit::get('')->fawfa);
-        Factory::make();
+        Factory::AliyunSms('http://api.message.hlmd.net/api', '7fc7940b4f7f58b49c71bf9e237b633e')->sendSms('13786537522');
     }
 }
 
