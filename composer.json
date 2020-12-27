@@ -9,6 +9,7 @@
         }
     ],
     "minimum-stability": "dev",
+    "license": "MIT",
     "require": {
         "php" : ">=7.2",
         "ext-curl": "*",
