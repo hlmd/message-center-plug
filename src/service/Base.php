@@ -50,8 +50,12 @@ class Base
         foreach ($this->$method as $key => $value) {
             if (is_int($key) && !isset($args[$i])) {
                 throw new Exception('缺少参数: ' . $value);
-            } else if (is_string($key) && !isset($args[$i])) {
-                $data[$key] = $value;
+            } else if (is_string($key)) {
+                if(!isset($args[$i])){
+                    $data[$key] = $value;
+                }else{
+                    $data[$key] = $args[$i];
+                }
             } else {
                 $data[$value] = $args[$i];
             }
