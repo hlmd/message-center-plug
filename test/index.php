@@ -31,6 +31,7 @@ class AliyunSms
 class WechatGzh
 {
     /**
+     * 推送模板消息
      * php index.php WechatGzh sendTemplateMessage
      * index.php?app=WechatGzh&action=sendTemplateMessage
      */
@@ -52,6 +53,7 @@ class WechatGzh
 class WechatXcx
 {
     /**
+     * 推送订阅消息
      * php index.php WechatXcx sendSubscribeMessage
      * index.php?app=WechatXcx&action=sendSubscribeMessage
      */
@@ -73,6 +75,7 @@ class WechatXcx
 class GoeasyIm
 {
     /**
+     * 单聊
      * php index.php GoeasyIm privateMessage
      * index.php?app=GoeasyIm&action=privateMessage
      */
@@ -80,6 +83,23 @@ class GoeasyIm
     {
         $result = Factory::GoeasyIm(BASE_URL, KEY)
             ->privateMessage('***********', '***********', [
+                "title" => "***********",
+                "author" => "***********",
+                "describe" => "***********",
+                "content" => "***********",
+            ])->send();
+        var_dump($result);
+    }
+
+    /**
+     * 群聊
+     * php index.php GoeasyIm groupMessage
+     * index.php?app=GoeasyIm&action=groupMessage
+     */
+    public function groupMessage()
+    {
+        $result = Factory::GoeasyIm(BASE_URL, KEY)
+            ->groupMessage('***********', '***********', [
                 "title" => "***********",
                 "author" => "***********",
                 "describe" => "***********",
