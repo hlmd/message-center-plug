@@ -19,6 +19,6 @@ class WechatGzh extends Base
         'to',
         'template_code',
         'template_param',
-        'url' => 'https://www.baidu.com/'
+        'url' => ''
     ];
 }

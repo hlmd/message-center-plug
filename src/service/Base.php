@@ -53,7 +53,7 @@ class Base
             } else if (is_string($key) && !isset($args[$i])) {
                 $data[$key] = $value;
             } else {
-                $data[$value] = $args[$key];
+                $data[$value] = $args[$i];
             }
             $i++;
         }
