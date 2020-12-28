@@ -8,6 +8,7 @@ use message\enum\Constant;
 /**
  * Class AliyunSms
  * @method sendSms(string $to, string $template_code, array $template_array, string $sign_name) 单发短信
+ * @method scene(string $to, string $scene, array $template_array = []) 单发短信
  * @package message\service
  */
 class AliyunSms extends Base
@@ -19,5 +20,11 @@ class AliyunSms extends Base
         'template_code',
         'template_param',
         'sign_name'
+    ];
+
+    protected $scene = [
+        'to',
+        'scene',
+        'template_param' => [],
     ];
 }
