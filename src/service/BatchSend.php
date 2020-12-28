@@ -7,7 +7,7 @@ use message\enum\Constant;
 
 /**
  * Class BatchSend
- * @method sendMessage(array $send_list, array $template_array) 批量发送
+ * @method sendMessage(array $send_list, array $template_array = '') 批量发送
  * @package message\service
  */
 class BatchSend extends Base
