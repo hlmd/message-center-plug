@@ -3,8 +3,8 @@ require 'vendor/autoload.php';
 
 use message\Factory;
 
-const BASE_URL = 'http://***.***/***/**';
-const KEY = '*********************************';
+const BASE_URL = '************************';
+const KEY = '************************';
 
 /**
  * Class AliyunSms
@@ -13,13 +13,30 @@ class AliyunSms
 {
     /**
      * 单发短信
-     * php index.php AliyunSms sendSms
-     * index.php?app=AliyunSms&action=sendSms
+     * php index.php AliyunSms sms
+     * index.php?app=AliyunSms&action=sms
      */
-    public function sendSms()
+    public function sms()
     {
-        $result = Factory::AliyunSms(BASE_URL, KEY)
-            ->sendSms('***********', '***********', ['code' => '******'], '******')
+        $result = Factory::AliyunSms(BASE_URL, KEY)->sms('************************', '************************',
+            [
+                'code' => 8888
+            ], '************************')
+            ->send();
+        var_dump($result);
+    }
+
+    /**
+     * 发送场景短信
+     * php index.php AliyunSms scene
+     * index.php?app=AliyunSms&action=scene
+     */
+    public function scene()
+    {
+        $result = Factory::AliyunSms(BASE_URL, KEY)->scene('************************', '************************',
+            [
+                'code' => 8888
+            ])
             ->send();
         var_dump($result);
     }
@@ -32,19 +49,32 @@ class WechatGzh
 {
     /**
      * 推送模板消息
-     * php index.php WechatGzh sendTemplateMessage
-     * index.php?app=WechatGzh&action=sendTemplateMessage
+     * php index.php WechatGzh templateMessage
+     * index.php?app=WechatGzh&action=templateMessage
      */
-    public function sendTemplateMessage()
+    public function templateMessage()
     {
-        $result = Factory::WechatGzh(BASE_URL, KEY)
-            ->sendTemplateMessage('**********************', '*********************************', [
-                "key1" => ["value" => "***********", "color" => "#000000"],
-                "key2" => ["value" => "***********", "color" => "#000000"],
-                "key3" => ["value" => "***********", "color" => "#000000"],
-            ])->send();
+        $result = Factory::WechatGzh(BASE_URL, KEY)->templateMessage('************************', '************************',
+            [
+                "key" => ["value" => "************************", "color" => "#888888"],
+            ], '************************')->send();
         var_dump($result);
     }
+
+    /**
+     * 推送模板消息
+     * php index.php WechatGzh unity
+     * index.php?app=WechatGzh&action=unity
+     */
+    public function unity()
+    {
+        $result = Factory::WechatGzh(BASE_URL, KEY)->unity('************************', '************************',
+            [
+                "key" => ["value" => "************************", "color" => "#888888"],
+            ], 'https://baidu.com/')->send();
+        var_dump($result);
+    }
+
 }
 
 /**
@@ -54,16 +84,28 @@ class WechatXcx
 {
     /**
      * 推送订阅消息
-     * php index.php WechatXcx sendSubscribeMessage
-     * index.php?app=WechatXcx&action=sendSubscribeMessage
+     * php index.php WechatXcx subscribeMessage
+     * index.php?app=WechatXcx&action=subscribeMessage
      */
-    public function sendSubscribeMessage()
+    public function subscribeMessage()
     {
-        $result = Factory::WechatXcx(BASE_URL, KEY)
-            ->sendSubscribeMessage('**********************', '*********************************', [
-                "thing1" => ["value" => "***********"],
-                "thing2" => ["value" => "***********"],
-                "thing3" => ["value" => "***********"],
+        $result = Factory::WechatXcx(BASE_URL, KEY)->subscribeMessage('************************', '************************',
+            [
+                "key" => ["value" => "************************"],
+            ])->send();
+        var_dump($result);
+    }
+
+    /**
+     * 统一发送 -> 推送订阅消息
+     * php index.php WechatXcx unity
+     * index.php?app=WechatXcx&action=unity
+     */
+    public function unity()
+    {
+        $result = Factory::WechatXcx(BASE_URL, KEY)->unity('************************', '************************',
+            [
+                "key" => ["value" => "************************"],
             ])->send();
         var_dump($result);
     }
@@ -81,13 +123,9 @@ class GoeasyIm
      */
     public function privateMessage()
     {
-        $result = Factory::GoeasyIm(BASE_URL, KEY)
-            ->privateMessage('***********', '***********', [
-                "title" => "***********",
-                "author" => "***********",
-                "describe" => "***********",
-                "content" => "***********",
-            ])->send();
+        $result = Factory::GoeasyIm(BASE_URL, KEY)->privateMessage('************************', '************************', [
+            "key" => "************************",
+        ])->send();
         var_dump($result);
     }
 
@@ -98,17 +136,25 @@ class GoeasyIm
      */
     public function groupMessage()
     {
-        $result = Factory::GoeasyIm(BASE_URL, KEY)
-            ->groupMessage('***********', '***********', [
-                "title" => "***********",
-                "author" => "***********",
-                "describe" => "***********",
-                "content" => "***********",
-            ])->send();
+        $result = Factory::GoeasyIm(BASE_URL, KEY)->groupMessage('************************', '************************', [
+            "************************" => "************************",
+        ])->send();
+        var_dump($result);
+    }
+
+    /**
+     * 统一发送 -> 群聊
+     * php index.php GoeasyIm unity
+     * index.php?app=GoeasyIm&action=unity
+     */
+    public function unity()
+    {
+        $result = Factory::GoeasyIm(BASE_URL, KEY)->unity('************************', '************************', [
+            "************************" => "************************",
+        ])->send();
         var_dump($result);
     }
 }
-
 
 /**
  * Class BatchSend
@@ -116,18 +162,46 @@ class GoeasyIm
 class BatchSend
 {
     /**
-     * php index.php BatchSend sendMessage
-     * index.php?app=BatchSend&action=sendMessage
+     * php index.php BatchSend message
+     * index.php?app=BatchSend&action=message
      */
-    public function sendMessage()
+    public function message()
     {
+
         $result = Factory::BatchSend(BASE_URL, KEY)
-            ->sendMessage([
-                Factory::AliyunSms(BASE_URL, KEY)->sendSms('***********', '***********', [], '***********')->batch(),
-                Factory::AliyunSms(BASE_URL, KEY)->sendSms('***********', '***********', [], '***********')->batch(),
-            ], [
-                "code" => '******'
+            ->message([
+                Factory::GoeasyIm(BASE_URL, KEY)->unity('************************', '************************', ["key" => "************************"])->batch(),
+                Factory::GoeasyIm(BASE_URL, KEY)->privateMessage('************************', '************************', ["key" => "************************"])->batch(),
             ])->send();
+        var_dump($result);
+    }
+}
+
+/**
+ * Class Message
+ */
+class Message
+{
+    /**
+     * php index.php Message list
+     * index.php?app=Message&action=list
+     */
+    public function list()
+    {
+        $result = Factory::Message(BASE_URL, KEY)->where([
+            'create_time' => ['************************'],
+            'is_read' => 1
+        ])->list(1, 1);
+        var_dump($result);
+    }
+
+    /**
+     * php index.php Message read
+     * index.php?app=Message&action=read
+     */
+    public function read()
+    {
+        $result = Factory::Message(BASE_URL, KEY)->read(8888);
         var_dump($result);
     }
 }

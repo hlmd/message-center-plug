@@ -7,15 +7,28 @@ use message\enum\Constant;
 
 /**
  * Class WechatGzh
- * @method sendTemplateMessage(string $to, string $template_code, array $template_array, string $url = '') 模板推送
+ * @method templateMessage(string $to, string $template_code, array $template_array, string $url = '') 模板推送
+ * @method unity(string $to, string $template_code, array $template_array, string $url = '') 统一发送->模板推送
  * @return Base
  * @package message\service
  */
 class WechatGzh extends Base
 {
+    protected $url_prefix = '/send';
     protected $app_type = Constant::APP_TYPE_WECHAT_GZH;
 
-    protected $sendTemplateMessage = [
+    protected $unity = 'templateMessage';
+
+    /**
+     * 模板推送
+     * @method templateMessage
+     * @param string $to 接收者
+     * @param string $template_code 模板代码ID
+     * @param array $template_param 参数
+     * @param string $url 跳转地址
+     * @var string[]
+     */
+    protected $templateMessage = [
         'to',
         'template_code',
         'template_param',

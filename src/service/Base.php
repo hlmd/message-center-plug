@@ -17,6 +17,7 @@ use message\enum\Constant;
 class Base
 {
     protected $base_url = '';
+    protected $url_prefix = '';
     protected $app_type = '';
     protected $key = '';
     protected $method = '';
@@ -42,8 +43,14 @@ class Base
      */
     public function __call(string $method, array $args): Base
     {
-        if (!property_exists($this, $method)) {
+        if (!property_exists($this, $method) || property_exists(Base::class, $method)) {
             throw new Exception($method . '()方法不存在');
+        }
+        if (is_string($this->$method)) {
+            if (!property_exists($this, $this->$method)) {
+                throw new Exception($method . '()方法不存在');
+            }
+            return call_user_func_array([$this, $this->$method], $args);
         }
         $data = [];
         $i = 0;
@@ -51,9 +58,9 @@ class Base
             if (is_int($key) && !isset($args[$i])) {
                 throw new Exception('缺少参数: ' . $value);
             } else if (is_string($key)) {
-                if(!isset($args[$i])){
+                if (!isset($args[$i])) {
                     $data[$key] = $value;
-                }else{
+                } else {
                     $data[$key] = $args[$i];
                 }
             } else {
@@ -91,7 +98,7 @@ class Base
             throw new Exception('请选择方法');
         }
         $http_client = new HttpClient();
-        $response = $http_client->post($this->base_url . '/' . Str::studly($this->app_type) . '/' . $this->method, [
+        $response = $http_client->post($this->base_url . $this->url_prefix . '/' . Str::studly($this->app_type) . '/' . $this->method, [
             'query' => [Constant::PLATFORM_KEY => $this->key],
             'form_params' => $this->data
         ])->getBody()->getContents();
