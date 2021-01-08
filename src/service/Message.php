@@ -33,6 +33,7 @@ class Message extends Base
         'template_code' => 'string',
         'template_param' => 'string',
         'order' => 'int|array',
+        'reader' => 'string',
         'is_read' => 'int',
         'send_status' => 'int',
         'create_time' => 'time',
