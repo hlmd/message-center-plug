@@ -25,13 +25,14 @@ class Message extends Base
 
     protected $where = [
         'type' => 'type',
-        'to' => 'string',
+        'to' => 'string|array',
         'url' => 'string',
-        'from' => 'string',
+        'from' => 'string|array',
+        'from_to' => 'array',
         'action' => 'string',
         'template_code' => 'string',
         'template_param' => 'string',
-        'order' => 'int',
+        'order' => 'int|array',
         'is_read' => 'int',
         'send_status' => 'int',
         'create_time' => 'time',
