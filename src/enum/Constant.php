@@ -12,6 +12,7 @@ class Constant
     const APP_TYPE_WECHAT_GZH  = 'wechat_gzh';                                     # 微信公众号
     const APP_TYPE_GOEASY_IM   = 'goeasy_im';                                      # GoeasyIm
     const APP_TYPE_BATCH_SEND  = 'batch_send';                                     # 批量发送
+    const APP_TYPE_MESSAGE     = 'message';                                        # 消息数据
 
     # App Type Id
     const APP_TYPE_ID_ALIYUN_SMS  = 1;                                             # 阿里云短信
