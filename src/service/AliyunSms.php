@@ -9,7 +9,8 @@ use message\enum\Constant;
  * Class AliyunSms
  * @method sms(string $to, string $template_code, array $template_array, string $sign_name) 单发短信
  * @method scene(string $to, string $scene, array $template_array = []) 单发场景短信
- * @method unity(string $to, string $template_code, array $template_array, string $sign_name) 统一发送->单发短信
+ * @method template(string $to, string $template_code, array $template_array = []) 单发模板短信
+ * @method unity(string $to, string $template_code, array $template_array = []) 统一发送->单发模板短信
  * @package message\service
  */
 class AliyunSms extends Base
@@ -17,7 +18,7 @@ class AliyunSms extends Base
     protected $url_prefix = '/send';
     protected $app_type = Constant::APP_TYPE_ALIYUN_SMS;
 
-    protected $unity = 'sms';
+    protected $unity = 'template';
 
     /**
      * 单发短信
@@ -46,6 +47,20 @@ class AliyunSms extends Base
     protected $scene = [
         'to',
         'scene',
+        'template_param' => [],
+    ];
+
+    /**
+     * 单发模板短信
+     * @method template
+     * @param string $to 接收者
+     * @param string $scene 场景值
+     * @param array $template_param 参数
+     * @var string[]
+     */
+    protected $template = [
+        'to',
+        'template_code',
         'template_param' => [],
     ];
 }

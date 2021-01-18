@@ -16,6 +16,7 @@ use message\service\Base;
  * @method static \message\service\GoeasyIm   GoeasyIm(string $base_url = '', string $key = '') GoeasyIm
  * @method static \message\service\BatchSend BatchSend(string $base_url = '', string $key = '') 批量发送
  * @method static \message\service\Message     Message(string $base_url = '', string $key = '') 消息数据
+ * @method static \message\service\Template   Template(string $base_url = '', string $key = '') 模板操作
  */
 class Factory
 {

@@ -40,6 +40,22 @@ class AliyunSms
             ->send();
         var_dump($result);
     }
+
+    /**
+     * 发送模板短信
+     * php index.php AliyunSms template
+     * index.php?app=AliyunSms&action=template
+     */
+    public function template()
+    {
+        $result = Factory::AliyunSms(BASE_URL, KEY)->template('************************', '************************',
+            [
+                'code' => 1116
+            ])
+            ->send();
+        var_dump($result);
+    }
+
 }
 
 /**
@@ -204,6 +220,44 @@ class Message
         $result = Factory::Message(BASE_URL, KEY)->read(8888);
         var_dump($result);
     }
+}
+
+/**
+ * Class Template
+ */
+class Template
+{
+
+    /**
+     * php index.php Template list
+     * index.php?app=Template&action=list
+     */
+    public function list()
+    {
+        $res = Factory::Template(BASE_URL, KEY)->where()->list(1, 10);
+        var_dump($res);
+    }
+
+    /**
+     * php index.php Template save
+     * index.php?app=Template&action=save
+     */
+    public function save()
+    {
+        $res = Factory::Template(BASE_URL, KEY)->save([]);
+        var_dump($res);
+    }
+
+    /**
+     * php index.php Template delete
+     * index.php?app=Template&action=delete
+     */
+    public function delete()
+    {
+        $res = Factory::Template(BASE_URL, KEY)->delete(1);
+        var_dump($res);
+    }
+
 }
 
 
