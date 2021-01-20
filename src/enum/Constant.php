@@ -38,4 +38,9 @@ class Constant
     # 列表排序code
     const ORDER_CODE_TIME_DESC = 1;                                                # 时间排倒序
     const ORDER_CODE_TIME_ASC = 2;                                                 # 时间排顺序
+
+    # 消息等级
+    const MESSAGE_LEVEL_ORDINARY = 1;                                              # 普通消息
+    const MESSAGE_LEVEL_IMPORTANT = 2;                                             # 重要消息
+
 }

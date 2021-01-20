@@ -22,6 +22,8 @@ class Base
     protected $key = '';
     protected $method = '';
     protected $data = [];
+    protected $app_id = null;
+    protected $set_data = ['category', 'level', 'remark'];
 
     /**
      * Base constructor.
@@ -74,6 +76,39 @@ class Base
     }
 
     /**
+     * 设置app_id
+     * @param $app_id
+     * @return $this
+     */
+    public function appId($app_id): Base
+    {
+        $this->app_id = $app_id;
+        return $this;
+    }
+
+    /**
+     * 设置值
+     * @param array|string $name
+     * @param $value
+     * @return $this|false
+     */
+    public function setData($name, $value = null)
+    {
+        if (is_array($name)) {
+            foreach ($name as $k => $v) {
+                if (in_array($k, $this->set_data)) {
+                    $this->data[$k] = $v;
+                }
+            }
+        } else {
+            if (in_array($name, $this->set_data)) {
+                $this->data[$name] = $value;
+            }
+        }
+        return $this;
+    }
+
+    /**
      * 生成批量发送数据
      * @return array
      */
@@ -98,8 +133,10 @@ class Base
             throw new Exception('请选择方法');
         }
         $http_client = new HttpClient();
+        $query = [Constant::PLATFORM_KEY => $this->key];
+        if (isset($this->app_id)) $query['app_id'] = $this->app_id;
         $response = $http_client->post($this->base_url . $this->url_prefix . '/' . Str::studly($this->app_type) . '/' . $this->method, [
-            'query' => [Constant::PLATFORM_KEY => $this->key],
+            'query' => $query,
             'form_params' => $this->data
         ])->getBody()->getContents();
         return json_decode($response, true);
