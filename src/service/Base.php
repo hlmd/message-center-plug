@@ -23,7 +23,6 @@ class Base
     protected $method = '';
     protected $data = [];
     protected $app_id = null;
-    protected $set_data = ['category', 'level', 'remark'];
 
     /**
      * Base constructor.
@@ -83,28 +82,6 @@ class Base
     public function appId($app_id): Base
     {
         $this->app_id = $app_id;
-        return $this;
-    }
-
-    /**
-     * 设置值
-     * @param array|string $name
-     * @param $value
-     * @return $this|false
-     */
-    public function setData($name, $value = null)
-    {
-        if (is_array($name)) {
-            foreach ($name as $k => $v) {
-                if (in_array($k, $this->set_data)) {
-                    $this->data[$k] = $v;
-                }
-            }
-        } else {
-            if (in_array($name, $this->set_data)) {
-                $this->data[$name] = $value;
-            }
-        }
         return $this;
     }
 
