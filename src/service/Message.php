@@ -29,6 +29,7 @@ class Message extends Base
         'url' => 'string',
         'from' => 'string|array',
         'from_to' => 'array',
+        'from_or_to' => 'array',
         'action' => 'string',
         'template_code' => 'string',
         'template_param' => 'array',

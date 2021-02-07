@@ -44,8 +44,8 @@ class Factory
     public static function getConfig($config): array
     {
         if ($config) return $config;
-        if (function_exists('env')) {
-            $path = env('app_path') . '/../extend';
+        if (function_exists('root_path')) {
+            $path = root_path() . 'extend';
         } else {
             $path = __DIR__ . '/../../../../../extend';
         }
