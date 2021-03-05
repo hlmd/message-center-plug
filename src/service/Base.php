@@ -114,7 +114,7 @@ class Base
         if (isset($this->app_id)) $query['app_id'] = $this->app_id;
         $response = $http_client->post($this->base_url . $this->url_prefix . '/' . Str::studly($this->app_type) . '/' . $this->method, [
             'query' => $query,
-            'form_params' => $this->data
+            'json' => $this->data
         ])->getBody()->getContents();
         return json_decode($response, true);
     }
