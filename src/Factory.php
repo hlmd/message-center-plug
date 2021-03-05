@@ -47,7 +47,7 @@ class Factory
         if (function_exists('root_path')) {
             $path = root_path() . 'extend';
         } else {
-            $path = __DIR__ . '/../../../../../extend';
+            $path = __DIR__ . '/../../../../extend';
         }
         $file_path = $path . '/message.php';
         if (is_dir($path) && is_file($file_path)) {
