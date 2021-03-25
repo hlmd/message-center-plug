@@ -34,7 +34,7 @@ class Message extends Base
         'action' => 'string',
         'template_code' => 'string',
         'template_param' => 'array',
-        'level' => 'int',
+        'level' => 'int|array',
         'order' => 'int|array',
         'reader' => 'string',
         'send_status' => 'int',
