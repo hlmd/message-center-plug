@@ -36,11 +36,17 @@ class Constant
     const MESSAGE_READ = 1;                                                        # 已读
 
     # 列表排序code
-    const ORDER_CODE_TIME_DESC = 1;                                                # 时间排倒序
-    const ORDER_CODE_TIME_ASC = 2;                                                 # 时间排顺序
+    const ORDER_CODE_TIME_DESC = 1;                                                # 时间降序
+    const ORDER_CODE_TIME_ASC = 2;                                                 # 时间升序
+    const ORDER_CODE_LEVEL_DESC = 3;                                               # 级别降序
+    const ORDER_CODE_LEVEL_ASC = 4;                                                # 级别升序
 
-    # 消息等级
-    const MESSAGE_LEVEL_ORDINARY = 1;                                              # 普通消息
-    const MESSAGE_LEVEL_IMPORTANT = 2;                                             # 重要消息
+    # 消息级别
+    const MSG_LEVEL_NORMAL = 1;                                                    # 正常
+    const MSG_LEVEL_MILD = 2;                                                      # 轻度
+    const MSG_LEVEL_REMIND = 3;                                                    # 提醒
+    const MSG_LEVEL_IMPORTANT = 4;                                                 # 重要
+    const MSG_LEVEL_URGENT = 5;                                                    # 紧急
+
 
 }

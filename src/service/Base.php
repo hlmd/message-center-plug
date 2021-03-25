@@ -79,9 +79,20 @@ class Base
      * @param $app_id
      * @return $this
      */
-    public function appId($app_id): Base
+    public function setAppId($app_id): Base
     {
         $this->app_id = $app_id;
+        return $this;
+    }
+
+    /**
+     * 设置层级
+     * @param $level
+     * @return $this
+     */
+    public function setLevel($level): Base
+    {
+        $this->data['level'] = $level;
         return $this;
     }
 

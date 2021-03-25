@@ -3,6 +3,7 @@
 
 namespace message\service;
 
+use GuzzleHttp\Exception\GuzzleException;
 use message\enum\Constant;
 
 /**
@@ -33,6 +34,7 @@ class Message extends Base
         'action' => 'string',
         'template_code' => 'string',
         'template_param' => 'array',
+        'level' => 'int',
         'order' => 'int|array',
         'reader' => 'string',
         'send_status' => 'int',
@@ -57,7 +59,7 @@ class Message extends Base
      * @param int $page
      * @param int $size
      * @return mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function list(int $page, int $size)
     {
@@ -72,7 +74,7 @@ class Message extends Base
      * @param $id
      * @param string[]|string $type
      * @return mixed
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function read($id, $type = null)
     {
