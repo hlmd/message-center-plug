@@ -53,14 +53,14 @@ class Factory
         if (is_dir($path) && is_file($file_path)) {
             $config = require $file_path;
             if (!isset($config['base_url']) || !isset($config['key'])) {
-                throw new Exception('缺少配置!');
+                throw new Exception('CODE:83002 配置有误!');
             }
             return [
                 $config['base_url'],
                 $config['key']
             ];
         } else {
-            throw new Exception('缺少配置!');
+            throw new Exception('CODE:83001 缺少配置!');
         }
     }
 }
