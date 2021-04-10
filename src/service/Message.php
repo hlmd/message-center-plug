@@ -37,6 +37,7 @@ class Message extends Base
         'level' => 'int|array',
         'order' => 'int|array',
         'reader' => 'string',
+        'read_type' => 'int',
         'send_status' => 'int',
         'create_time' => 'time',
         'update_time' => 'time',
@@ -45,11 +46,12 @@ class Message extends Base
     /**
      * 查询条件
      * @param $where
+     * @param $extend
      * @return $this
      */
-    public function where($where): Message
+    public function where($where, $extend = false): Message
     {
-        $where = array_intersect_key($where, $this->where);
+        $extend == false && $where = array_intersect_key($where, $this->where);
         $this->data = array_merge($this->data, $where);
         return $this;
     }

@@ -35,6 +35,11 @@ class Constant
     const MESSAGE_UNREAD = 0;                                                      # 未读
     const MESSAGE_READ = 1;                                                        # 已读
 
+    # Read Type
+    const READ_TYPE_ALL = 0;                                                       # All
+    const READ_TYPE_READ = 1;                                                      # Read
+    const READ_TYPE_UNREAD = 2;                                                    # UnRead
+
     # 列表排序code
     const ORDER_CODE_TIME_DESC = 1;                                                # 时间降序
     const ORDER_CODE_TIME_ASC = 2;                                                 # 时间升序
