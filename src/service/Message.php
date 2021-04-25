@@ -43,6 +43,11 @@ class Message extends Base
         'update_time' => 'time',
     ];
 
+    private $fromLog = [
+        'from',
+        'date'
+    ];
+
     /**
      * 查询条件
      * @param $where
@@ -82,6 +87,21 @@ class Message extends Base
     {
         $this->data['id'] = $id;
         $this->data['type'] = $type;
+        $this->method = __FUNCTION__;
+        return $this->send();
+    }
+
+    /**
+     * 发送者日志
+     * @param $from
+     * @param $date
+     * @return mixed
+     * @throws GuzzleException
+     */
+    public function fromLog($from, $date)
+    {
+        $this->data['from'] = $from;
+        $this->data['date'] = $date;
         $this->method = __FUNCTION__;
         return $this->send();
     }

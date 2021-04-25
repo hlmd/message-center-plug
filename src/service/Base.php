@@ -97,6 +97,28 @@ class Base
     }
 
     /**
+     * 设置发送者
+     * @param $from
+     * @return $this
+     */
+    public function setFrom($from): Base
+    {
+        $this->data['from'] = $from;
+        return $this;
+    }
+
+    /**
+     * 设置接收者
+     * @param $to
+     * @return $this
+     */
+    public function setTo($to): Base
+    {
+        $this->data['to'] = $to;
+        return $this;
+    }
+
+    /**
      * 生成批量发送数据
      * @return array
      */

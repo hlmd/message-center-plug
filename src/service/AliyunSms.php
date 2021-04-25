@@ -24,7 +24,7 @@ class AliyunSms extends Base
      * 单发短信
      * @method sms
      * @param string $to 接收者
-     * @param string $from 发送者
+     * @param string $template_code 发送者
      * @param array $template_param 参数
      * @param string $sign_name 签名
      * @var string[]
