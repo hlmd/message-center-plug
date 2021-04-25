@@ -95,13 +95,15 @@ class Message extends Base
      * 发送者日志
      * @param $from
      * @param $date
+     * @param $type
      * @return mixed
      * @throws GuzzleException
      */
-    public function fromLog($from, $date)
+    public function fromLog($from, $date, $type)
     {
         $this->data['from'] = $from;
         $this->data['date'] = $date;
+        $this->data['type'] = $type;
         $this->method = __FUNCTION__;
         return $this->send();
     }
