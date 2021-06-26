@@ -10,7 +10,7 @@ use message\enum\Constant;
  * @method unity(array $send_list, array $template_array = []) 统一发送 -> 批量发送
  * @package message\service
  */
-class BatchSend extends Base
+class BatchSend extends Send
 {
     protected $url_prefix = '/send';
     protected $app_type = Constant::APP_TYPE_BATCH_SEND;

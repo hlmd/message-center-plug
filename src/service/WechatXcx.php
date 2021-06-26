@@ -11,7 +11,7 @@ use message\enum\Constant;
  * @method unity(string $to, string $template_code, array $template_array, string $url = '') 统一发送->订阅消息推送
  * @package message\service
  */
-class WechatXcx extends Base
+class WechatXcx extends Send
 {
     protected $url_prefix = '/send';
     protected $app_type = Constant::APP_TYPE_WECHAT_XCX;

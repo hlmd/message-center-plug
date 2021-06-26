@@ -12,7 +12,7 @@ use message\enum\Constant;
  * @method groupMessage(string $to, string $from, array $template_array) 群聊
  * @method unity(string $to, string $from, array $template_array) 统一发送->群聊
  */
-class GoeasyIm extends Base
+class GoeasyIm extends Send
 {
     protected $url_prefix = '/send';
     protected $app_type = Constant::APP_TYPE_GOEASY_IM;

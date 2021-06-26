@@ -13,7 +13,7 @@ use message\enum\Constant;
  * @return Base
  * @package message\service
  */
-class WechatGzh extends Base
+class WechatGzh extends Send
 {
     protected $url_prefix = '/send';
     protected $app_type = Constant::APP_TYPE_WECHAT_GZH;

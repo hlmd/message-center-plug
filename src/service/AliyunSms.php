@@ -13,7 +13,7 @@ use message\enum\Constant;
  * @method unity(string $to, string $template_code, array $template_array = []) 统一发送->单发模板短信
  * @package message\service
  */
-class AliyunSms extends Base
+class AliyunSms extends Send
 {
     protected $url_prefix = '/send';
     protected $app_type = Constant::APP_TYPE_ALIYUN_SMS;
