@@ -54,6 +54,15 @@ class Template extends Base
     }
 
     /**
+     * 阿里云短信模板
+     * @return TemplateAliyunSms
+     */
+    public function AliyunSms(): TemplateAliyunSms
+    {
+        return new TemplateAliyunSms($this->base_url, $this->key);
+    }
+
+    /**
      * 获取列表
      * @param int $page
      * @param int $size

@@ -1,6 +1,7 @@
 <?php
 require 'vendor/autoload.php';
 
+use message\enum\Constant;
 use message\Factory;
 
 const BASE_URL = '************************';
@@ -18,10 +19,10 @@ class AliyunSms
      */
     public function sms()
     {
-        $result = Factory::AliyunSms(BASE_URL, KEY)->sms('************************', '************************',
+        $result = Factory::AliyunSms(BASE_URL, KEY)->sms('手机号码', '模板Code',
             [
                 'code' => 8888
-            ], '************************')
+            ], '签名')
             ->send();
         var_dump($result);
     }
@@ -33,7 +34,7 @@ class AliyunSms
      */
     public function scene()
     {
-        $result = Factory::AliyunSms(BASE_URL, KEY)->scene('************************', '************************',
+        $result = Factory::AliyunSms(BASE_URL, KEY)->scene('手机号码', '场景',
             [
                 'code' => 8888
             ])
@@ -234,7 +235,7 @@ class Template
      */
     public function list()
     {
-        $res = Factory::Template(BASE_URL, KEY)->where()->list(1, 10);
+        $res = Factory::Template(BASE_URL, KEY)->where(['scene' => '场景名称'])->list(1, 10);
         var_dump($res);
     }
 
@@ -258,6 +259,70 @@ class Template
         var_dump($res);
     }
 
+    /**
+     * 返回阿里云短信模板类
+     */
+    public function AliyunSms()
+    {
+
+    }
+
+}
+
+class TemplateAliyunSms
+{
+    /**
+     * 查询短信模板的审核状态
+     * php index.php TemplateAliyunSms QuerySmsTemplate
+     * index.php?app=TemplateAliyunSms&action=QuerySmsTemplate
+     */
+    public function QuerySmsTemplate()
+    {
+        $res = Factory::TemplateAliyunSms()->QuerySmsTemplate('模板Code');
+        var_dump($res);
+    }
+
+    /**
+     * 删除短信模板
+     * php index.php TemplateAliyunSms DeleteSmsTemplate
+     * index.php?app=TemplateAliyunSms&action=DeleteSmsTemplate
+     */
+    public function DeleteSmsTemplate()
+    {
+        $res = Factory::TemplateAliyunSms()->DeleteSmsTemplate('模板Code');
+        var_dump($res);
+    }
+
+    /**
+     * 申请短信模板
+     * php index.php TemplateAliyunSms AddSmsTemplate
+     * index.php?app=TemplateAliyunSms&action=AddSmsTemplate
+     */
+    public function AddSmsTemplate()
+    {
+        $res = Factory::TemplateAliyunSms()->AddSmsTemplate(
+            '模板名称',
+            Constant::ALIYUN_SMS_TEMPLATE_TYPE_CODE,
+            '模板内容',
+            '备注');
+        var_dump($res);
+    }
+
+    /**
+     * 修改未通过审核的短信模板
+     * php index.php TemplateAliyunSms ModifySmsTemplate
+     * index.php?app=TemplateAliyunSms&action=ModifySmsTemplate
+     */
+    public function ModifySmsTemplate()
+    {
+        $res = Factory::TemplateAliyunSms()->ModifySmsTemplate(
+            '模板Code',
+            '模板名称',
+            Constant::ALIYUN_SMS_TEMPLATE_TYPE_CODE,
+            '模板内容',
+            '备注');
+        var_dump($res);
+    }
 }
 
 

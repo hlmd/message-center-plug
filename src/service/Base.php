@@ -23,6 +23,7 @@ class Base
     protected $method = '';
     protected $data = [];
     protected $app_id = null;
+    protected $send = false;
 
     /**
      * Base constructor.
@@ -39,10 +40,10 @@ class Base
      * 调用方法生成示例
      * @param string $method
      * @param array $args
-     * @return $this
-     * @throws Exception
+     * @return $this|false|mixed
+     * @throws GuzzleException
      */
-    public function __call(string $method, array $args): Base
+    public function __call(string $method, array $args)
     {
         if (!property_exists($this, $method) || property_exists(Base::class, $method)) {
             throw new Exception($method . '()方法不存在');
@@ -71,6 +72,7 @@ class Base
         }
         $this->data = $data;
         $this->method = $method;
+        if ($this->send) return $this->send();
         return $this;
     }
 

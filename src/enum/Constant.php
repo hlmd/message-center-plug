@@ -53,5 +53,16 @@ class Constant
     const MSG_LEVEL_IMPORTANT = 4;                                                 # 重要
     const MSG_LEVEL_URGENT = 5;                                                    # 紧急
 
+    # 短信模板审核状态
+    const TEMPLATE_AUDIT_INIT = 0;                                                 # 审核中
+    const TEMPLATE_AUDIT_PASS = 1;                                                 # 审核通过
+    const TEMPLATE_AUDIT_FAIL = 2;                                                 # 审核失败
+
+    # 阿里云短信模板类型
+    const ALIYUN_SMS_TEMPLATE_TYPE_CODE = 0;                                       # 表示验证码
+    const ALIYUN_SMS_TEMPLATE_TYPE_NOTICE = 1;                                     # 表示短信通知
+    const ALIYUN_SMS_TEMPLATE_TYPE_PROMOTE = 2;                                    # 表示推广短信
+    const ALIYUN_SMS_TEMPLATE_TYPE_FOREIGN = 3;                                    # 国际/港澳台消息
+
 
 }
