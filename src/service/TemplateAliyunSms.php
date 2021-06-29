@@ -20,6 +20,18 @@ class TemplateAliyunSms extends Base
     protected $send = true;
 
     /**
+     * 设置扩展字段
+     * @param $extra
+     * @return $this
+     */
+    public function setExtra($extra): TemplateAliyunSms
+    {
+        $this->data['extra'] = $extra;
+        return $this;
+    }
+
+
+    /**
      * 查询短信模板的审核状态
      * @method QuerySmsTemplate
      * @param string $TemplateCode 模板Code
