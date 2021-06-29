@@ -29,6 +29,7 @@ class Template extends Base
     ];
 
     protected $where = [
+        'id' => 'int|array',
         'type' => 'type',
         'code' => 'string',
         'param' => 'string',
@@ -44,11 +45,12 @@ class Template extends Base
     /**
      * 查询条件
      * @param $where
+     * @param false $extend
      * @return $this
      */
-    public function where($where): Template
+    public function where($where, $extend = false): Template
     {
-        $where = array_intersect_key($where, $this->where);
+        $extend == false && $where = array_intersect_key($where, $this->where);
         $this->data = array_merge($this->data, $where);
         return $this;
     }
