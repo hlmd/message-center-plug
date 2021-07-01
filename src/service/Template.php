@@ -65,16 +65,26 @@ class Template extends Base
     }
 
     /**
-     * 获取列表
+     * 设置分页
      * @param int $page
      * @param int $size
-     * @return mixed
-     * @throws GuzzleException
+     * @return $this
      */
-    public function list(int $page, int $size)
+    public function setPageSize(int $page, int $size): Template
     {
         $this->data['page'] = $page;
         $this->data['size'] = $size;
+        return $this;
+    }
+
+    /**
+     * 获取列表
+     * @return mixed
+     * @throws GuzzleException
+     */
+    public function list()
+    {
+
         $this->method = __FUNCTION__;
         return $this->send();
     }
