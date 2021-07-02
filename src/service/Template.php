@@ -18,6 +18,7 @@ class Template extends Base
 
     protected $save = [
         'id' => 'int',
+        'app_type' => 'string',
         'type' => 'string',
         'code' => 'string',
         'param' => 'string',
@@ -104,16 +105,26 @@ class Template extends Base
     }
 
     /**
+     * 设置APP类型
+     * @param $type
+     * @return $this
+     */
+    public function setAppType($type): Template
+    {
+        $this->data['app_type'] = $type;
+        return $this;
+    }
+
+    /**
      * 删除消息
      * @param $id
      * @param string[]|string $type
      * @return mixed
      * @throws GuzzleException
      */
-    public function delete($id, $type = null)
+    public function delete($id)
     {
         $this->data['id'] = $id;
-        $this->data['type'] = $type;
         $this->method = __FUNCTION__;
         return $this->send();
     }
