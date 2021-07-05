@@ -116,7 +116,22 @@ class Template extends Base
     }
 
     /**
-     * 删除消息
+     * 模板详情
+     * @param $id
+     * @param string[]|string $type
+     * @return mixed
+     * @throws GuzzleException
+     */
+    public function detail($id)
+    {
+        $this->data['id'] = $id;
+        $this->method = __FUNCTION__;
+        return $this->send();
+    }
+
+
+    /**
+     * 删除模板
      * @param $id
      * @param string[]|string $type
      * @return mixed
