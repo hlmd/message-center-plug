@@ -70,7 +70,7 @@ class Base
             }
             $i++;
         }
-        $this->data = $data;
+        $this->data = array_merge($this->data, $data);
         $this->method = $method;
         if ($this->send) return $this->send();
         return $this;
